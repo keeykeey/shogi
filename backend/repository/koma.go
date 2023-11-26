@@ -17,10 +17,10 @@ type KomaBase struct {
 	Name2              string
 }
 
-var komas []KomaBase
 
 func GetKomas() []KomaBase {
-	db := GetConnection()
+    var komas []KomaBase
+	db := GetDbConnection()
 	db.Find(&komas)
 	db.Table("komas").Select("id", "move_id", "move_id2", "name", "name2").Scan(&komas);
 	return komas;

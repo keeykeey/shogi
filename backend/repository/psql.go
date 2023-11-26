@@ -9,7 +9,7 @@ import (
   "os"
 ) 
 
-func GetConnection() *gorm.DB {
+func GetDbConnection() *gorm.DB {
 	err := godotenv.Load(".env");
 	if err != nil {
 		panic("couldn't find env file\n")

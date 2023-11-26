@@ -4,9 +4,8 @@ import (
 	"gorm.io/gorm"
 )
 
-// Model Arrangement
 type Arrangement struct {
-	Id                  uint16    `gorm:"primaryKey"`
+	Id                  uint16
 	Name                string
 	gorm.Model
 }
