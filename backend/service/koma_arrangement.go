@@ -12,7 +12,7 @@ func GetKomaArrangements(c *gin.Context, arrangementId string) {
 	if err != nil {
 		panic("invalid paramater")
 	}
-	var arrangements []repository.KomaArrangements = repository.GetKomaArrangements(uint16(id))
+	var komaArrangements []repository.KomaArrangements = repository.GetKomaArrangements(uint16(id))
 
-	response.KomaArrangements(c, arrangements)
+	response.KomaArrangements(c, komaArrangements)
 }
