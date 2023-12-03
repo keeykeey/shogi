@@ -6,6 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func KomaArrangements(c *gin.Context, arrangements []repository.RetrieveKomaArrangements) {
+func KomaArrangements(c *gin.Context, arrangements []repository.KomaArrangements) {
 	c.JSON(http.StatusOK, arrangements)
 }
