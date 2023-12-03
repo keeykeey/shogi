@@ -1,21 +1,35 @@
 package repository
 
+import (
+	"fmt"
+)
+
 type KomaArrangements struct {
-	Id         			uint16
-	ArrangementId       uint16
+	ID         			uint16
+	ArrangementID       uint16
 	Arrangement         Arrangement
-    KomaId              byte
+    KomaID              byte
 	Koma                Koma
-	PositionId          uint16
+	PositionID          uint16
 	Position            Position
 	IsFirstMove         bool
 	IsFront             bool
 }
 
-
-func GetKomaArrangements(arrangementId uint16) []KomaArrangements {
+func GetKomaArrangements(arrangementId uint16) ([]KomaArrangements) {
     var komaArrangements []KomaArrangements
 	db := GetDbConnection()
-	db.Table("koma_arrangements").Where("arrangement_id = ?", arrangementId).Scan(&komaArrangements)
+	db.Debug().
+	  Table("koma_arrangements").
+	  Preload("Arrangement").
+	  Preload("Koma").
+	  Preload("Position").
+	  Where("arrangement_id = ?", arrangementId).
+	  Joins("join arrangements on koma_arrangements.arrangement_id = arrangements.id").
+	  Joins("join komas on koma_arrangements.koma_id = komas.id").
+	  Joins("join positions on koma_arrangements.position_id = positions.id").
+	  Find(&komaArrangements)
+	s := fmt.Sprintf("%v",komaArrangements);
+	fmt.Printf("\n\nlog: %s",s)
 	return komaArrangements;
 }

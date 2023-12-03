@@ -1,22 +1,21 @@
 package repository
 
-import (
-	"gorm.io/gorm"
-)
-
 type Koma struct {
-	komaBase KomaBase
-	gorm.Model
+	ID                 byte           `gorm:"primaryKey"`
+	MoveID             byte
+	MoveID2            byte
+	Name               string
+	Name2              string
+	BasicColumn
 }
 
 type KomaBase struct {
-	Id                 uint8
-	MoveId             uint8
-	MoveId2            uint8
+	ID                 byte           `gorm:"primaryKey"`
+	MoveID             byte
+	MoveID2            byte
 	Name               string
 	Name2              string
 }
-
 
 func GetKomas() []KomaBase {
     var komas []KomaBase

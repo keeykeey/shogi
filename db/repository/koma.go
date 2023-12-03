@@ -2,9 +2,9 @@ package repository
 
 // Model Koma
 type Koma struct {
-	Id                 byte           `gorm:"primaryKey"`
-	MoveId             byte
-	MoveId2            byte
+	ID                 byte           `gorm:"primaryKey"`
+	MoveID             byte
+	MoveID2            byte
 	Name               string
 	Name2              string
 	BasicColumn
@@ -12,14 +12,14 @@ type Koma struct {
 
 func ExportKoma() []Koma {
 	komas := []Koma{
-		Koma{Id: 1, MoveId: 1, MoveId2: 1, Name: "ou", Name2: ""},
-		Koma{Id: 2, MoveId: 2, MoveId2: 2, Name: "kin", Name2: ""},
-		Koma{Id: 3, MoveId: 3, MoveId2: 3, Name: "gin", Name2: "narigin"},
-		Koma{Id: 4, MoveId: 4, MoveId2: 4, Name: "kei", Name2: "narikei"},
-		Koma{Id: 5, MoveId: 5, MoveId2: 5, Name: "kyou", Name2: "narikyou"},
-		Koma{Id: 6, MoveId: 6, MoveId2: 6, Name: "hu", Name2: "to"},
-		Koma{Id: 7, MoveId: 7, MoveId2: 7, Name: "hisha", Name2: "ryuu"},
-		Koma{Id: 8, MoveId: 8, MoveId2: 8, Name: "kaku", Name2: "uma"},
+		Koma{ID: 1, MoveID: 1, MoveID2: 1, Name: "ou", Name2: ""},
+		Koma{ID: 2, MoveID: 2, MoveID2: 2, Name: "kin", Name2: ""},
+		Koma{ID: 3, MoveID: 3, MoveID2: 3, Name: "gin", Name2: "narigin"},
+		Koma{ID: 4, MoveID: 4, MoveID2: 4, Name: "kei", Name2: "narikei"},
+		Koma{ID: 5, MoveID: 5, MoveID2: 5, Name: "kyou", Name2: "narikyou"},
+		Koma{ID: 6, MoveID: 6, MoveID2: 6, Name: "hu", Name2: "to"},
+		Koma{ID: 7, MoveID: 7, MoveID2: 7, Name: "hisha", Name2: "ryuu"},
+		Koma{ID: 8, MoveID: 8, MoveID2: 8, Name: "kaku", Name2: "uma"},
 	}
 	return komas
 }
