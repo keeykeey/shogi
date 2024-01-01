@@ -1,2 +1,44 @@
 *.env
 nginx/nginx-1.24.0
+
+shogi-koma-2/
+
+## shogi_front
+# dependency
+shogi_front/node_modules/
+shogi_front/.pnp
+shogi_front/.pnp.js
+shogi_front/.yarn/install-state.gz
+
+# testing
+shogi_front/coverage
+
+# next.js
+shogi_front/.next/
+shogi_front/out/
+
+# production
+shogi_front/build
+
+# misc
+shogi_front/.DS_Store
+shogi_front/*.pem
+
+# debug
+shogi_front/npm-debug.log*
+shogi_front/yarn-debug.log*
+shogi_front/yarn-error.log*
+
+# local env files
+shogi_front/.env*.local
+
+# vercel
+shogi_front/.vercel
+
+# typescript
+shogi_front/*.tsbuildinfo
+shogi_front/next-env.d.ts
+
+# backup
+shogi_front/.gitcp
+shogi_front/.gitignorecp

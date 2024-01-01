@@ -9,6 +9,8 @@ import (
   "os"
 ) 
 
+var db *gorm.DB
+
 func GetDbConnection() *gorm.DB {
 	err := godotenv.Load(".env");
 	if err != nil {
@@ -28,9 +30,11 @@ func GetDbConnection() *gorm.DB {
 		PASSWORD, 
 		DB_NAME, 
 		DB_PORT)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
-	if err != nil {
+	var err2 error
+	db, err2 = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+	if err2 != nil {
 		fmt.Printf("%v",dsn)
 		panic("couldn't connect to database\n")
 	}
