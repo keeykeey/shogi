@@ -1,14 +1,23 @@
-
-interface PositionConstructor {
+export interface PositionCConstructor {
   w: number,
   h: number,
 }
 
-class Position {
+export class PositionC {
   w: number;
   h: number;
-  constructor(pc: PositionConstructor) {
+  top: number | null = null;   // css top
+  left: number | null = null;  // css left
+  constructor(pc: PositionCConstructor) {
     this.w = pc.w;
     this.h = pc.h;
+    this.setTop();
+    this.setLeft();
+  }
+  setTop() {
+    this.top = 65 + 32 * (this.h -1); // TODO :今は仮
+  }
+  setLeft() {
+    this.left = 41 + 32 * (this.w -1); // TODO :今は仮
   }
 };

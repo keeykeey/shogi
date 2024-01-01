@@ -1,6 +1,7 @@
 import Board from "@/app/game/[gameId]/components/board";
 import Koma from "@/app/game/[gameId]/components/koma";
 import { KomaArrangement, KomaArrangementT } from "@/model/komaArrangement";
+import { createKomaOnBoard, createKomaStyle } from "./interface";
 
 export default async function Page() {
   try {
@@ -17,20 +18,15 @@ export default async function Page() {
         />
         { komaArrangements && 
           komaArrangements.map( item => {
-            const h = item.Position.Number % 10
-            const w = Math.floor(item.Position.Number/10)
-            const top = 65 + 32 * (h - 1);
-            const left = 41 + 32 * (w - 1);
-            const style = {
-              top: `${top}px`,
-              left: `${left}px`
-            };
+            const koma = createKomaOnBoard(item);
+            const style = createKomaStyle(koma);
             return (
               <Koma
                 key={item.ID}
-                isFirstMove={true}
-                isFront={true}
-                label={item.Koma.Name}
+                label={koma.label}
+                label2={koma.label2}
+                isFirstMove={koma.isFirstMove}
+                isFront={koma.isFront}
                 width={35}
                 height={35}
                 style={style}
