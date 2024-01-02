@@ -1,11 +1,7 @@
 package repository
 
-import (
-	"gorm.io/gorm"
-)
-
 type Arrangement struct {
-	ID                  uint16
-	Name                string
-	gorm.Model
+	ID                  uint16     `gorm:"primaryKey" json:"id"`
+	Name                string     `json:"name"`
+	BasicColumn
 }

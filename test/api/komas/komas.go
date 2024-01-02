@@ -39,7 +39,12 @@ func TestGet(ok *int, ng *int) {
 	}
 
 	var komas []KomaResponse
-	json.NewDecoder(resp.Body).Decode(&komas)
+	err2 := json.NewDecoder(resp.Body).Decode(&komas)
+	if err2 != nil {
+	    fmt.Printf("failed to decode json into Type KomaArrangements")
+	    *ng++
+	    return
+	}
 	for i, _ := range komas {
 		if fmt.Sprintf("%T", komas[i].Name) != "string" ||
 		   fmt.Sprintf("%T", komas[i].Name2) != "string" ||

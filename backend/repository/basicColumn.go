@@ -7,7 +7,8 @@ import (
 
 // Model Arrangement
 type BasicColumn struct {
-	CreatedAt           time.Time
-	UpdatedAt           time.Time
-	DeletedAt           gorm.DeletedAt
+	CreatedAt           time.Time          `json:"createdAt"`
+	UpdatedAt           time.Time          `json:"updatedAt"`
+	DeletedAt           gorm.DeletedAt     `json:"deletedAt"`
+	
 }

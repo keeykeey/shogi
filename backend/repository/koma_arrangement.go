@@ -5,15 +5,15 @@ import (
 )
 
 type KomaArrangements struct {
-	ID         			uint16
-	ArrangementID       uint16
-	Arrangement         Arrangement
-    KomaID              byte
-	Koma                Koma
-	PositionID          uint16
-	Position            Position
-	IsFirstMove         bool
-	IsFront             bool
+	ID         			uint16           `gorm:"primaryKey" json:"id"`
+	ArrangementID       uint16           `json:"arrangementId"`
+	Arrangement         Arrangement      `json:"arrangement"`
+    KomaID              byte             `json:"komaId"`
+	Koma                Koma             `json:"koma"`
+	PositionID          uint16           `json:"positionId"`
+	Position            Position         `json:"position"`
+	IsFirstMove         bool             `json:"isFirstMove"`
+	IsFront             bool             `json:"isFront"`
 }
 
 func GetKomaArrangements(arrangementId uint16) ([]KomaArrangements) {
