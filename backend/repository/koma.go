@@ -1,20 +1,20 @@
 package repository
 
 type Koma struct {
-	ID                 byte           `gorm:"primaryKey"`
-	MoveID             byte
-	MoveID2            byte
-	Name               string
-	Name2              string
+	ID                 byte           `gorm:"primaryKey" json:"id"`
+	MoveID             byte           `json:"moveId"`
+	MoveID2            byte           `json:"moveId2"`
+	Name               string         `json:"name"`
+	Name2              string         `json:"name2"`
 	BasicColumn
 }
 
 type KomaBase struct {
-	ID                 byte           `gorm:"primaryKey"`
-	MoveID             byte
-	MoveID2            byte
-	Name               string
-	Name2              string
+	ID                 byte           `gorm:"primaryKey" json:"id"`
+	MoveID             byte           `json:"moveId"`
+	MoveID2            byte           `json:"moveId2"`
+	Name               string         `json:"name"`
+	Name2              string         `json:"name2"`
 }
 
 func GetKomas() []KomaBase {

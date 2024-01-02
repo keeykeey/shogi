@@ -53,7 +53,8 @@ type KomaBase struct {
 
 type Position struct {
 	ID               uint16
-	Number           uint8
+	Width            uint8
+	Height           uint8
 	Name             string
 	BasicColumn
 }
@@ -87,7 +88,13 @@ func TestGet(ok *int, ng *int) {
 	}
 
 	var komaArrangements []KomaArrangementsResponse
-	json.NewDecoder(resp.Body).Decode(&komaArrangements)
+	err2 := json.NewDecoder(resp.Body).Decode(&komaArrangements)
+	if err2 != nil {
+    	fmt.Printf("failed to decode json into Type KomaArrangements")
+	    *ng++
+	    return
+	}
+
 	for i, _ := range komaArrangements {
 		if fmt.Sprintf("%T", komaArrangements[i].ID) != "uint16" ||
 		   fmt.Sprintf("%T", komaArrangements[i].ArrangementID) != "uint16" ||
@@ -98,9 +105,9 @@ func TestGet(ok *int, ng *int) {
 		   fmt.Sprintf("%T", komaArrangements[i].Position) != "komaArrangements.Position" &&
 		   fmt.Sprintf("%T", komaArrangements[i].IsFirstMove) != "bool" &&
 		   fmt.Sprintf("%T", komaArrangements[i].IsFront) != "bool" {
-			fmt.Printf("failed at test koma arrangement type check\n")
-			*ng++
-			return
+	        fmt.Printf("failed at test koma arrangement type check\n")
+		    *ng++
+		    return
 		}
 	}
 
