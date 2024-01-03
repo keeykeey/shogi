@@ -12,23 +12,23 @@ export interface CreateKomaStyle {
 }
 
 export const createKomaOnBoard: CreateKomaOnBoard = (komaArrangement) => {
-  const h = komaArrangement.Position.Number % 10
-  const w = Math.floor(komaArrangement.Position.Number/10)
+  const h = komaArrangement.position.height;
+  const w = komaArrangement.position.width;
   const positionCConstructor: PositionCConstructor = {
     w: w,
     h: h
   };
 
   const plainKomaCConstructor: PlainKomaCConstructor = {
-    label: komaArrangement.Koma.Name,
-    label2: komaArrangement.Koma.Name2,
+    label: komaArrangement.koma.name,
+    label2: komaArrangement.koma.name2,
   }
 
   const komaCConstructor: KomaCConstructor = {
     plainKoma: plainKomaCConstructor,
     position: positionCConstructor,
-    isFirstMove: komaArrangement.IsFirstMove,
-    isFront: komaArrangement.IsFront,
+    isFirstMove: komaArrangement.isFirstMove,
+    isFront: komaArrangement.isFront,
   }
   return new KomaC(komaCConstructor);
 };

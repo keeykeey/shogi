@@ -22,7 +22,7 @@ export default async function Page() {
             const style = createKomaStyle(koma);
             return (
               <Koma
-                key={item.ID}
+                key={item.id}
                 label={koma.label}
                 label2={koma.label2}
                 isFirstMove={koma.isFirstMove}

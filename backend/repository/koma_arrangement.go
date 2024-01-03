@@ -1,9 +1,5 @@
 package repository
 
-import (
-	"fmt"
-)
-
 type KomaArrangements struct {
 	ID         			uint16           `gorm:"primaryKey" json:"id"`
 	ArrangementID       uint16           `json:"arrangementId"`
@@ -49,6 +45,5 @@ func GetKomaArrangements(arrangementId uint16) ([]KomaArrangements) {
 	  Joins("join komas on koma_arrangements.koma_id = komas.id").
 	  Joins("join positions on koma_arrangements.position_id = positions.id").
 	  Find(&komaArrangements)
-	s := fmt.Sprintf("%v",komaArrangements);
 	return komaArrangements;
 }
