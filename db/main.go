@@ -117,7 +117,11 @@ func insertForTest(db *gorm.DB) {
 func main() {
 	db := ConnectPsql()
 	
-	var argv = fmt.Sprintf("%s",os.Args[1])
+	var argv string
+	if len(os.Args) >= 2 {
+	    argv = fmt.Sprintf("%s",os.Args[1])
+	}
+
 	var isTest = (argv == "test")
 
 	if isTest {
