@@ -7,13 +7,33 @@ import (
 type KomaArrangements struct {
 	ID         			uint16           `gorm:"primaryKey" json:"id"`
 	ArrangementID       uint16           `json:"arrangementId"`
-	Arrangement         Arrangement      `json:"arrangement"`
+	Arrangement         arrangement      `json:"arrangement"`
     KomaID              byte             `json:"komaId"`
-	Koma                Koma             `json:"koma"`
+	Koma                koma             `json:"koma"`
 	PositionID          uint16           `json:"positionId"`
-	Position            Position         `json:"position"`
+	Position            position         `json:"position"`
 	IsFirstMove         bool             `json:"isFirstMove"`
 	IsFront             bool             `json:"isFront"`
+}
+
+type arrangement struct {
+	ID                  uint16     `gorm:"primaryKey" json:"id"`
+	Name                string     `json:"name"`
+}
+
+type koma struct {
+	ID                 byte           `gorm:"primaryKey" json:"id"`
+	MoveID             byte           `json:"moveId"`
+	MoveID2            byte           `json:"moveId2"`
+	Name               string         `json:"name"`
+	Name2              string         `json:"name2"`
+}
+
+type position struct {
+	ID               uint16      `gorm:"primaryKey" json:"id"`
+	Width            byte        `json:"width"`
+	Height           byte        `json:"height"`
+	Name             string      `json:"name"`
 }
 
 func GetKomaArrangements(arrangementId uint16) ([]KomaArrangements) {
@@ -30,6 +50,5 @@ func GetKomaArrangements(arrangementId uint16) ([]KomaArrangements) {
 	  Joins("join positions on koma_arrangements.position_id = positions.id").
 	  Find(&komaArrangements)
 	s := fmt.Sprintf("%v",komaArrangements);
-	fmt.Printf("\n\nlog: %s",s)
 	return komaArrangements;
 }

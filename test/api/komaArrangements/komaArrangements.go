@@ -1,13 +1,13 @@
 package komaArrangements
 
 import (
-	"encoding/json"
 	"net/http"
 	"fmt"
 	"time"
 	"gorm.io/gorm"
 	"github.com/joho/godotenv"
 	"os"
+	"bytes"
 )
 
 type KomaArrangementsResponse struct {
@@ -87,28 +87,17 @@ func TestGet(ok *int, ng *int) {
 		return
 	}
 
-	var komaArrangements []KomaArrangementsResponse
-	err2 := json.NewDecoder(resp.Body).Decode(&komaArrangements)
-	if err2 != nil {
-    	fmt.Printf("failed to decode json into Type KomaArrangements")
-	    *ng++
-	    return
-	}
+	var expected = `[{"id":1,"arrangementId":1,"arrangement":{"id":1,"name":"平手"},"komaId":1,"koma":{"id":1,"moveId":1,"moveId2":1,"name":"ou","name2":""},"positionId":5,"position":{"id":5,"width":5,"height":1,"name":"五一"},"isFirstMove":false,"isFront":true},{"id":2,"arrangementId":1,"arrangement":{"id":1,"name":"平手"},"komaId":3,"koma":{"id":3,"moveId":3,"moveId2":3,"name":"gin","name2":"narigin"},"positionId":7,"position":{"id":7,"width":3,"height":1,"name":"三一"},"isFirstMove":false,"isFront":true}]`
 
-	for i, _ := range komaArrangements {
-		if fmt.Sprintf("%T", komaArrangements[i].ID) != "uint16" ||
-		   fmt.Sprintf("%T", komaArrangements[i].ArrangementID) != "uint16" ||
-		   fmt.Sprintf("%T", komaArrangements[i].Arrangement) != "komaArrangements.Arrangement" ||
-		   fmt.Sprintf("%T", komaArrangements[i].KomaID) != "uint8" ||
-		   fmt.Sprintf("%T", komaArrangements[i].Koma) != "komaArrangements.Koma" &&
-		   fmt.Sprintf("%T", komaArrangements[i].PositionID) != "uint16" &&
-		   fmt.Sprintf("%T", komaArrangements[i].Position) != "komaArrangements.Position" &&
-		   fmt.Sprintf("%T", komaArrangements[i].IsFirstMove) != "bool" &&
-		   fmt.Sprintf("%T", komaArrangements[i].IsFront) != "bool" {
-	        fmt.Printf("failed at test koma arrangement type check\n")
-		    *ng++
-		    return
-		}
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(resp.Body)
+	rb := buf.String()
+	got := string(rb)
+
+	if (got != expected) {
+	    *ng++
+	    fmt.Printf("failed at test komaArrangements\n")
+		return
 	}
 
 	*ok++

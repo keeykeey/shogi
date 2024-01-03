@@ -1,11 +1,11 @@
 package komas
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"github.com/joho/godotenv"
 	"os"
+	"bytes"
 )
 
 type KomaResponse struct {
@@ -38,23 +38,19 @@ func TestGet(ok *int, ng *int) {
 		return
 	}
 
-	var komas []KomaResponse
-	err2 := json.NewDecoder(resp.Body).Decode(&komas)
-	if err2 != nil {
-	    fmt.Printf("failed to decode json into Type KomaArrangements")
-	    *ng++
-	    return
+	var expected = `[{"id":1,"moveId":1,"moveId2":1,"name":"ou","name2":""},{"id":2,"moveId":2,"moveId2":2,"name":"kin","name2":""},{"id":3,"moveId":3,"moveId2":3,"name":"gin","name2":"narigin"}]`
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(resp.Body)
+	rb := buf.String()
+	got := string(rb)
+
+	if (got != expected) {
+		*ng++
+		fmt.Printf("Failed at test komas")
+		return
 	}
-	for i, _ := range komas {
-		if fmt.Sprintf("%T", komas[i].Name) != "string" ||
-		   fmt.Sprintf("%T", komas[i].Name2) != "string" ||
-		   fmt.Sprintf("%T", komas[i].MoveID) != "uint8" ||
-		   fmt.Sprintf("%T", komas[i].MoveID2) != "uint8" {
-		    fmt.Printf("failed at test koma type check\n")
-			*ng++
-			return
-		}
-	}
+
 
 	*ok++
 }

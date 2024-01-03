@@ -23,3 +23,12 @@ func ExportKoma() []Koma {
 	}
 	return komas
 }
+
+func ExportKomaForTest() []Koma {
+	komas := []Koma{
+		Koma{ID: 1, MoveID: 1, MoveID2: 1, Name: "ou", Name2: ""},
+		Koma{ID: 2, MoveID: 2, MoveID2: 2, Name: "kin", Name2: ""},
+		Koma{ID: 3, MoveID: 3, MoveID2: 3, Name: "gin", Name2: "narigin"},
+	}
+	return komas
+}
