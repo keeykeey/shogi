@@ -95,3 +95,12 @@ func ExportPosition() []Position {
 	}
 	return positions
 }
+
+func ExportPositionForTest() []Position {
+	positions := []Position{
+		Position{ID: 5, Width: 5, Height: 1, Name: "五一"},
+		Position{ID: 6, Width: 4, Height: 1, Name: "四一"},
+		Position{ID: 7, Width: 3, Height: 1, Name: "三一"},
+	}
+	return positions
+}

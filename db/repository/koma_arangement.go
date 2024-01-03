@@ -100,3 +100,17 @@ func ExportKomaArrangement() []KomaArrangement {
 
 	return komaArrangements
 }
+
+
+func ExportKomaArrangementForTest() []KomaArrangement {
+	arrangements := ExportArrangementForTest()
+	komas := ExportKomaForTest()
+	positions := ExportPositionForTest()
+	komaArrangements := []KomaArrangement{
+		KomaArrangement{ID:1 ,ArrangementID: arrangements[0].ID, KomaID: komas[0].ID, PositionID: positions[0].ID, IsFirstMove: false, IsFront: true },
+		KomaArrangement{ID:2 ,ArrangementID: arrangements[0].ID, KomaID: komas[2].ID, PositionID: positions[2].ID, IsFirstMove: false, IsFront: true },
+
+	}
+
+	return komaArrangements
+}

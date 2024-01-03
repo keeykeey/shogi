@@ -27,3 +27,13 @@ func ExportGame() []Game {
 	}
 	return games
 }
+
+func ExportGameForTest() []Game {
+	users := ExportUserForTest()
+	arrangements := ExportArrangementForTest()
+	games := []Game{
+		Game{ID: 1, ArrangementID: arrangements[0].ID, FirstPlayerID: users[0].ID, SecondPlayerID: users[1].ID, WinnerID: users[0].ID, LoserID: users[1].ID},
+		Game{ID: 2, ArrangementID: arrangements[1].ID, FirstPlayerID: users[1].ID, SecondPlayerID: users[2].ID, WinnerID: users[1].ID, LoserID: users[2].ID},
+	}
+	return games
+}

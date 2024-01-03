@@ -77,8 +77,54 @@ func insert(db *gorm.DB) {
 
 } 
 
+func insertForTest(db *gorm.DB) {
+	// Migration
+	db.AutoMigrate(
+		&repository.User{},
+		&repository.Koma{},
+		&repository.Position{},
+		&repository.Arrangement{},
+		&repository.KomaArrangement{},
+		&repository.Game{}, 
+	)
+
+	// User
+	user := repository.ExportUserForTest()
+	db.Create(&user)
+
+	// Koma
+	koma := repository.ExportKomaForTest()
+	db.Create(&koma)
+
+	// Position
+	position := repository.ExportPositionForTest()
+	db.Create(&position)
+
+	// Arrangement
+	arrangement := repository.ExportArrangementForTest()
+	db.Create(&arrangement)
+
+	// KomaArrangement
+	komaArrangement := repository.ExportKomaArrangementForTest()
+	db.Create(&komaArrangement)
+
+	// Game
+	game := repository.ExportGameForTest()
+	db.Create(&game)
+
+} 
+
 func main() {
 	db := ConnectPsql()
-	delete(db)
-	insert(db)
+	
+	var argv = fmt.Sprintf("%s",os.Args[1])
+	var isTest = (argv == "test")
+
+	if isTest {
+		delete(db)
+		insertForTest(db)
+	} else {
+		delete(db)
+		insert(db)
+	}
 }

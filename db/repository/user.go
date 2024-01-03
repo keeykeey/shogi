@@ -17,3 +17,12 @@ func ExportUser() []User {
 	}
 	return users
 }
+
+func ExportUserForTest() []User {
+	users := []User{
+		User{ID: 1, Name: "羽生"},
+		User{ID: 2, Name: "藤井"},
+		User{ID: 3, Name: "森内"},
+	}
+	return users
+}
