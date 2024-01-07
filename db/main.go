@@ -87,6 +87,7 @@ func insertForTest(db *gorm.DB) {
 	// Migration
 	db.AutoMigrate(
 		&repository.User{},
+		&repository.Board{},
 		&repository.Koma{},
 		&repository.Position{},
 		&repository.Arrangement{},

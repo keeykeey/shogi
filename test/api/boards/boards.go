@@ -1,4 +1,4 @@
-package komas
+package boards
 
 import (
 	"fmt"
@@ -8,12 +8,15 @@ import (
 	"bytes"
 )
 
-type KomaResponse struct {
-	ID      byte
-	MoveID  byte
-	MoveID2 byte
-	Name    string
-	Name2   string
+type Board struct {
+	ID                  byte
+	BoardTop            uint16
+	BoardLeft           uint16
+	SquareHeightCount   byte
+	SquareWidthCount    byte
+	SquareHeightLen     uint16
+	SquareWidthLen      uint16
+	LineWidth           byte
 }
 
 func TestGet(ok *int, ng *int) {
@@ -23,7 +26,7 @@ func TestGet(ok *int, ng *int) {
 	}
 
 	BASE_URL := os.Getenv("BASE_URL")
-	endpoint := fmt.Sprintf("%s/api/koma", BASE_URL)
+	endpoint := fmt.Sprintf("%s/api/board/1", BASE_URL)
 	resp, err := http.Get(endpoint)
 	if err != nil {
 		*ng++
@@ -38,7 +41,7 @@ func TestGet(ok *int, ng *int) {
 		return
 	}
 
-	var expected = `[{"id":1,"moveId":1,"moveId2":1,"name":"ou","name2":""},{"id":2,"moveId":2,"moveId2":2,"name":"kin","name2":""},{"id":3,"moveId":3,"moveId2":3,"name":"gin","name2":"narigin"}]`
+	var expected = `{"ID":1,"boardTop":65,"boardLeft":41,"squareHeightCount":9,"squareWidthCount":9,"squareHeightLen":30,"squareWidthLen":30,"lineWidth":2}`
 
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(resp.Body)
@@ -50,6 +53,7 @@ func TestGet(ok *int, ng *int) {
 		fmt.Printf("Failed at test komas")
 		return
 	}
-
+	
 	*ok++
 }
+
