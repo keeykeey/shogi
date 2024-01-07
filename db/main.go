@@ -35,6 +35,7 @@ func delete(db *gorm.DB) {
 	db.Exec("DROP TABLE IF EXISTS users CASCADE")
 	db.Exec("DROP TABLE IF EXISTS games CASCADE")
 	db.Exec("DROP TABLE IF EXISTS komas CASCADE")
+	db.Exec("DROP TABLE IF EXISTS boards CASCADE")
 	db.Exec("DROP TABLE IF EXISTS koma_arrangements CASCADE")
 	db.Exec("DROP TABLE IF EXISTS arrangements CASCADE")
 	db.Exec("DROP TABLE IF EXISTS positions CASCADE")
@@ -44,6 +45,7 @@ func insert(db *gorm.DB) {
 	// Migration
 	db.AutoMigrate(
 		&repository.User{},
+		&repository.Board{},
 		&repository.Koma{},
 		&repository.Position{},
 		&repository.Arrangement{},
@@ -54,6 +56,10 @@ func insert(db *gorm.DB) {
 	// User
 	user := repository.ExportUser()
 	db.Create(&user)
+
+	// Board
+	board := repository.ExportBoard()
+	db.Create(&board)
 
 	// Koma
 	koma := repository.ExportKoma()
@@ -91,6 +97,10 @@ func insertForTest(db *gorm.DB) {
 	// User
 	user := repository.ExportUserForTest()
 	db.Create(&user)
+
+	// Board
+	board := repository.ExportBoardForTest()
+	db.Create(&board)
 
 	// Koma
 	koma := repository.ExportKomaForTest()
