@@ -2,21 +2,24 @@ import { KomaArrangementT } from "@/model/komaArrangement";
 import { KomaC, KomaCConstructor, PlainKomaCConstructor } from "@/model/koma";
 import { PositionCConstructor } from "@/model/position";
 import { KomaStyle } from "./components/koma";
+import { BoardC } from "@/model/board";
 
 export interface CreateKomaOnBoard {
-  (komaArrangement: KomaArrangementT): KomaC
+  (komaArrangement: KomaArrangementT,
+   board: BoardC ): KomaC
 }
 
 export interface CreateKomaStyle {
   (koma: KomaC): KomaStyle;
 }
 
-export const createKomaOnBoard: CreateKomaOnBoard = (komaArrangement) => {
+export const createKomaOnBoard: CreateKomaOnBoard = (komaArrangement, board) => {
   const h = komaArrangement.position.height;
   const w = komaArrangement.position.width;
   const positionCConstructor: PositionCConstructor = {
-    w: w,
-    h: h
+    width: w,
+    height: h,
+    board: board,
   };
 
   const plainKomaCConstructor: PlainKomaCConstructor = {
