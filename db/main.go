@@ -58,7 +58,7 @@ func insert(db *gorm.DB) {
 	db.Create(&user)
 
 	// Board
-	board := repository.ExportBoardForTest()
+	board := repository.ExportBoard()
 	db.Create(&board)
 
 	// Koma
