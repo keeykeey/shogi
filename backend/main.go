@@ -17,6 +17,11 @@ func main() {
 		service.GetKoma(c)
 	})
 
+	r.GET("/api/board/:boardId",func(c *gin.Context) {
+		id := c.Param("boardId")
+		service.GetBoard(c, id)
+	})
+
 	r.GET("/api/komaArrangements/:arrangementId", func(c *gin.Context) {
 		id := c.Param("arrangementId")
 		service.GetKomaArrangements(c, id)

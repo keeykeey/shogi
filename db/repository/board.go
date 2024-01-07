@@ -5,10 +5,11 @@ type Board struct {
 	BoardTop            uint16
 	BoardLeft           uint16
 	SquareHeightCount   byte
-	SquarewidthCount    byte
+	SquareWidthCount    byte
 	SquareHeightLen     uint16
 	SquareWidthLen      uint16
-	lineWidth           byte
+	LineWidth           byte
+	BasicColumn
 }
 
 func ExportBoard() []Board {
@@ -18,10 +19,10 @@ func ExportBoard() []Board {
 			BoardTop: 65,
 			BoardLeft: 41,
 			SquareHeightCount: 9,
-			SquarewidthCount: 9,
+			SquareWidthCount: 9,
 			SquareHeightLen: 30,
 			SquareWidthLen: 30,
-			lineWidth: 2,
+			LineWidth: 2,
 		},
 	}
 	return boards
@@ -34,10 +35,10 @@ func ExportBoardForTest() []Board {
 			BoardTop: 65,
 			BoardLeft: 41,
 			SquareHeightCount: 9,
-			SquarewidthCount: 9,
+			SquareWidthCount: 9,
 			SquareHeightLen: 30,
 			SquareWidthLen: 30,
-			lineWidth: 2,
+			LineWidth: 2,
 		},
 	}
 	return boards
