@@ -1,42 +1,35 @@
 export type KomaArrangementT = {
-  ID: number,
-  ArrangementId: number,
-  Arrangement: ArrangementT,
-  KomaID: number,
-  Koma: KomaT,
-  PositionID: number,
-  Position: PositionT,
-  IsFirstMove: boolean,
-  IsFront: boolean,
+  id: number,
+  arrangementId: number,
+  arrangement: ArrangementT,
+  komaId: number,
+  koma: KomaT,
+  positionId: number,
+  position: PositionT,
+  isFirstMove: boolean,
+  isFront: boolean,
 }
 
 export type ArrangementT = {
-  ID: number,
-  Name: string,
-  CreatedAt: Date,
-  UpdatedAt: Date,
-  DeletedAt: Date,
-  KomaID: number,
+  id: number,
+  name: string,
+  komaId: number,
 }
 
 export type KomaT = {
-  ID: number,
-  MoveID: number,
-  MoveID2: number,
-  Name: string,
-  Name2: string,
-  CreatedAt: Date,
-  UpdatedAt: Date,
-  DeletedAt: Date,
+  id: number,
+  moveId: number,
+  moveId2: number,
+  name: string,
+  name2: string,
 }
 
 export type PositionT = {
-  ID: number,
-  Number: number,
-  Name: string,
-  CreatedAt: Date,
-  UpdatedAt: Date,
-  DeletedAt: Date,
+  id: number,
+  number: number,
+  height: number,
+  width: number,
+  name: string,
 }
 
 export class KomaArrangement {
